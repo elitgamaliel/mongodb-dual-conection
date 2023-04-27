@@ -1,39 +1,27 @@
 package com.systemjaade.mongodbdualconection.controller;
 
 import com.systemjaade.mongodbdualconection.model.Doctor;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
-import org.springframework.http.ResponseEntity;
+import com.systemjaade.mongodbdualconection.repository.DoctorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import javax.validation.Valid;
-
 @RestController
-@RequestMapping("/doctor")
+@RequestMapping("/doctors")
 public class DoctorController {
 
-    private final ReactiveMongoTemplate mongoTemplate;
-
-    public DoctorController(@Qualifier("mongoTemplateDoctor") ReactiveMongoTemplate mongoTemplate) {
-        this.mongoTemplate = mongoTemplate;
-    }
-
-    @GetMapping("/")
-    public Flux<Doctor> getAllDoctors() {
-        return mongoTemplate.findAll(Doctor.class);
-    }
+    @Autowired
+    private DoctorRepository doctorRepository;
 
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<Doctor>> getDoctorById(@PathVariable(value = "id") String doctorId) {
-        return mongoTemplate.findById(doctorId, Doctor.class)
-                .map(doctor -> ResponseEntity.ok(doctor))
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+    public Mono<Doctor> getDoctorById(@PathVariable String id) {
+        return doctorRepository.findById(id);
     }
 
     @PostMapping("/")
-    public Mono<Doctor> createDoctor(@Valid @RequestBody Doctor doctor) {
-        return mongoTemplate.save(doctor);
+    public Mono<Doctor> createDoctor(@RequestBody Doctor doctor) {
+        return doctorRepository.save(doctor);
     }
+
+    // Métodos adicionales para interactuar con la base de datos
 }

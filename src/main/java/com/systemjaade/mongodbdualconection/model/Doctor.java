@@ -3,7 +3,7 @@ package com.systemjaade.mongodbdualconection.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("doctor")
+@Document(collection = "doctor")
 public class Doctor {
     @Id
     private String id;
