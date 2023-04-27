@@ -16,7 +16,7 @@ public class DoctorController {
 
     private final ReactiveMongoTemplate mongoTemplate;
 
-    public DoctorController(@Qualifier("mongoTemplate") ReactiveMongoTemplate mongoTemplate) {
+    public DoctorController(@Qualifier("mongoTemplateDoctor") ReactiveMongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
     }
 
