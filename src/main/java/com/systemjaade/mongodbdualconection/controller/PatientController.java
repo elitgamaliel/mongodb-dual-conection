@@ -1,35 +1,39 @@
 package com.systemjaade.mongodbdualconection.controller;
 
 import com.systemjaade.mongodbdualconection.model.Patient;
-import com.systemjaade.mongodbdualconection.repository.PatientRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import javax.validation.Valid;
+
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/patient")
 public class PatientController {
 
-    @Autowired
-    @Qualifier("patientRepository")
-    private PatientRepository patientRepository;
+    private final ReactiveMongoTemplate mongoTemplate;
 
-    @Autowired
-    public PatientController(@Qualifier("patient") PatientRepository patientRepository) {
-        this.patientRepository = patientRepository;
+    public PatientController(@Qualifier("mongoTemplate") ReactiveMongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
     }
 
-    @GetMapping("/patients")
+    @GetMapping("/")
     public Flux<Patient> getAllPatients() {
-        return patientRepository.findAll();
+        return mongoTemplate.findAll(Patient.class);
     }
 
-    @PostMapping("/patients")
-    public Mono<Patient> addPatient(@RequestBody Patient patient) {
-        return patientRepository.save(patient);
+    @GetMapping("/{id}")
+    public Mono<ResponseEntity<Patient>> getPatientById(@PathVariable(value = "id") String patientId) {
+        return mongoTemplate.findById(patientId, Patient.class)
+                .map(patient -> ResponseEntity.ok(patient))
+                .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
+    @PostMapping("/")
+    public Mono<Patient> createPatient(@Valid @RequestBody Patient patient) {
+        return mongoTemplate.save(patient);
+    }
 }
