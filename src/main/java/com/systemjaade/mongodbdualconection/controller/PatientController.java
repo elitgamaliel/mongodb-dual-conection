@@ -4,6 +4,7 @@ import com.systemjaade.mongodbdualconection.model.Patient;
 import com.systemjaade.mongodbdualconection.service.PatientService;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 
 @RestController
@@ -18,5 +19,10 @@ public class PatientController {
     @GetMapping("/patients")
     public Flux<Patient> findAll() {
         return patientService.findAll();
+    }
+
+    @PostMapping("/patient")
+    public Mono<Patient> add(@RequestBody Patient patient) {
+        return patientService.add(patient);
     }
 }
