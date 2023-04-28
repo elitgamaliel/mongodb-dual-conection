@@ -1,0 +1,7 @@
+spring:
+  data:
+    mongodb:
+      patient:
+        uri: mongodb://localhost:27017/patient
+      doctor:
+        uri: mongodb://localhost:27017/doctor

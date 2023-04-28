@@ -1,31 +1,21 @@
 package com.systemjaade.mongodbdualconection.controller;
 
 import com.systemjaade.mongodbdualconection.model.Doctor;
-import com.systemjaade.mongodbdualconection.repository.DoctorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
+import com.systemjaade.mongodbdualconection.service.DoctorService;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
 @RestController
-@RequestMapping("/doctors")
 public class DoctorController {
 
-    @Autowired
-    private DoctorRepository doctorRepository;
+    private final DoctorService doctorService;
 
-    @Autowired
-    private ReactiveMongoTemplate doctor;
-
-    @GetMapping("/{id}")
-    public Mono<Doctor> getDoctorById(@PathVariable String id) {
-        return doctorRepository.findById(id);
+    public DoctorController(DoctorService doctorService) {
+        this.doctorService = doctorService;
     }
 
-    @PostMapping("/")
-    public Mono<Doctor> createDoctor(@RequestBody Doctor doctor) {
-        return doctorRepository.save(doctor);
+    @GetMapping("/patients")
+    public Flux<Doctor> findDoctorsByCondition(@RequestParam String condition) {
+        return doctorService.findDoctorsByCondition(condition);
     }
-
-    // Métodos adicionales para interactuar con la base de datos
 }
