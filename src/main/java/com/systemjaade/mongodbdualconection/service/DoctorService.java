@@ -14,7 +14,7 @@ public class DoctorService {
         this.doctorRepository = doctorRepository;
     }
 
-    public Flux<Doctor> findDoctorsByCondition(String condition) {
+    public Flux<Doctor> findAll() {
         return doctorRepository.findAll();
     }
 }

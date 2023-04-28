@@ -16,7 +16,7 @@ public class PatientController {
     }
 
     @GetMapping("/patients")
-    public Flux<Patient> findPatientsByCondition(@RequestParam String condition) {
-        return patientService.findPatientsByCondition(condition);
+    public Flux<Patient> findAll() {
+        return patientService.findAll();
     }
 }

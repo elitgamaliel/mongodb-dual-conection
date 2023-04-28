@@ -14,8 +14,8 @@ public class DoctorController {
         this.doctorService = doctorService;
     }
 
-    @GetMapping("/patients")
-    public Flux<Doctor> findDoctorsByCondition(@RequestParam String condition) {
-        return doctorService.findDoctorsByCondition(condition);
+    @GetMapping("/doctors")
+    public Flux<Doctor> findAll() {
+        return doctorService.findAll();
     }
 }
