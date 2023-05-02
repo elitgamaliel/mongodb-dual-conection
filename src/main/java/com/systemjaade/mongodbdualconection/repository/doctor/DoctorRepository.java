@@ -1,4 +1,4 @@
-package com.systemjaade.mongodbdualconection.repository;
+package com.systemjaade.mongodbdualconection.repository.doctor;
 
 import com.systemjaade.mongodbdualconection.model.Doctor;
 import org.springframework.beans.factory.annotation.Qualifier;

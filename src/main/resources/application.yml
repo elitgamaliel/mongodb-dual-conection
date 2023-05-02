@@ -2,6 +2,10 @@ spring:
   data:
     mongodb:
       patient:
-        uri: mongodb://localhost:27017/patient
+        database: patient
+        uri: mongodb://localhost:27017
       doctor:
-        uri: mongodb://localhost:27017/doctor
+        database: doctor
+        uri: mongodb://localhost:27017
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.mongo.MongoReactiveAutoConfiguration,org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration

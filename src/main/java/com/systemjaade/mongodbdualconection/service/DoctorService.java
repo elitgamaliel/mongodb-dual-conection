@@ -1,7 +1,7 @@
 package com.systemjaade.mongodbdualconection.service;
 
 import com.systemjaade.mongodbdualconection.model.Doctor;
-import com.systemjaade.mongodbdualconection.repository.DoctorRepository;
+import com.systemjaade.mongodbdualconection.repository.doctor.DoctorRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
