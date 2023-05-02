@@ -1,7 +1,6 @@
 package com.systemjaade.mongodbdualconection.controller;
 
 import com.systemjaade.mongodbdualconection.model.Doctor;
-import com.systemjaade.mongodbdualconection.model.Patient;
 import com.systemjaade.mongodbdualconection.service.DoctorService;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
