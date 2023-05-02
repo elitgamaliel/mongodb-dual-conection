@@ -22,22 +22,22 @@ public class MongoConfiguration {
     @Primary
     @Bean
     public MongoClient reactiveMongoClientCoffee() {
-        return MongoClients.create(createMongoClientSettings(customMongoProperties.getPatient()));
+        return MongoClients.create(createMongoClientSettings(customMongoProperties.getDoctor()));
     }
 
     @Bean
     public MongoClient reactiveMongoClientBurger() {
-        return MongoClients.create(createMongoClientSettings(customMongoProperties.getDoctor()));
+        return MongoClients.create(createMongoClientSettings(customMongoProperties.getPatient()));
     }
 
     @Primary
     @Bean("mongoTemplateCoffee")
     public ReactiveMongoTemplate reactiveMongoTemplateCoffee(){
-        return new ReactiveMongoTemplate(reactiveMongoClientCoffee(),customMongoProperties.getPatient().getDatabase());
+        return new ReactiveMongoTemplate(reactiveMongoClientCoffee(),customMongoProperties.getDoctor().getDatabase());
     }
     @Bean("mongoTemplateBurger")
     public ReactiveMongoTemplate reactiveMongoTemplateBurger(){
-        return new ReactiveMongoTemplate(reactiveMongoClientBurger(),customMongoProperties.getDoctor().getDatabase());
+        return new ReactiveMongoTemplate(reactiveMongoClientBurger(),customMongoProperties.getPatient().getDatabase());
     }
 
 
