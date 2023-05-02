@@ -6,6 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableReactiveMongoRepositories(basePackages = "com.systemjaade.mongodbdualconection.repository.patient",
-        reactiveMongoTemplateRef = "mongoTemplateBurger")
+        reactiveMongoTemplateRef = "mongoTemplatePatient")
 public class PatientMongoConfig {
 }

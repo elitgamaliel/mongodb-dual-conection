@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 
 @Configuration
 @EnableReactiveMongoRepositories(basePackages = "com.systemjaade.mongodbdualconection.repository.doctor",
-        reactiveMongoTemplateRef = "mongoTemplateCoffee")
+        reactiveMongoTemplateRef = "mongoTemplateDoctor")
 public class DoctorMongoConfig {
 }
