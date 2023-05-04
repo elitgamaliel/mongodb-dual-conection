@@ -30,19 +30,39 @@ public class MongoConfiguration {
         return MongoClients.create(createMongoClientSettings(customMongoProperties.getPatient()));
     }
 
+    @Bean
+    public MongoClient reactiveMongoClientMotorizedRouting() {
+        return MongoClients.create(createMongoClientSettings(customMongoProperties.getMotorizedRouting()));
+    }
+
+    @Bean
+    public MongoClient reactiveMongoClientMaster() {
+        return MongoClients.create(createMongoClientSettings(customMongoProperties.getMaster()));
+    }
+
     @Primary
     @Bean("mongoTemplateDoctor")
-    public ReactiveMongoTemplate reactiveMongoTemplateDoctor(){
-        return new ReactiveMongoTemplate(reactiveMongoClientDoctor(),customMongoProperties.getDoctor().getDatabase());
+    public ReactiveMongoTemplate reactiveMongoTemplateDoctor() {
+        return new ReactiveMongoTemplate(reactiveMongoClientDoctor(), customMongoProperties.getDoctor().getDatabase());
     }
+
     @Bean("mongoTemplatePatient")
-    public ReactiveMongoTemplate reactiveMongoTemplatePatient(){
-        return new ReactiveMongoTemplate(reactiveMongoClientPatient(),customMongoProperties.getPatient().getDatabase());
+    public ReactiveMongoTemplate reactiveMongoTemplatePatient() {
+        return new ReactiveMongoTemplate(reactiveMongoClientPatient(), customMongoProperties.getPatient().getDatabase());
+    }
+
+    @Bean("mongoTemplateMotorizedRouting")
+    public ReactiveMongoTemplate reactiveMongoTemplateMotorizedRouting(){
+        return new ReactiveMongoTemplate(reactiveMongoClientMotorizedRouting(),customMongoProperties.getMotorizedRouting().getDatabase());
+    }
+
+    @Bean("mongoTemplateMaster")
+    public ReactiveMongoTemplate reactiveMongoTemplateMaster(){
+        return new ReactiveMongoTemplate(reactiveMongoClientMaster(),customMongoProperties.getMaster().getDatabase());
     }
 
 
-    private MongoClientSettings createMongoClientSettings(MongoProperties mongoProperties){
-
+    private MongoClientSettings createMongoClientSettings(MongoProperties mongoProperties) {
         ConnectionString ConnectionString = new ConnectionString(mongoProperties.getUri());
 
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()

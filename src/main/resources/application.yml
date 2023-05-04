@@ -7,5 +7,11 @@ spring:
       doctor:
         database: doctor
         uri: mongodb://localhost:27017
+      motorized-routing:
+        database: motorized-routing
+        uri: mongodb+srv://user-omni-dev:KJRUeHnz6glKQLrc@fp-dqu-digital-mongo.aohi9.mongodb.net/motorized-routing?authSource=admin&readPreference=secondaryPreferred&maxStalenessSeconds=120&retryWrites=true&w=majority
+      master:
+        database: master
+        uri: mongodb+srv://root:elpreciomasbajo@cluster0-kcun4.mongodb.net/master?authSource=admin&retryWrites=true&w=majority&readPreference=nearest&maxPoolSize=2500&maxIdleTimeMS=20000
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.mongo.MongoReactiveAutoConfiguration,org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
