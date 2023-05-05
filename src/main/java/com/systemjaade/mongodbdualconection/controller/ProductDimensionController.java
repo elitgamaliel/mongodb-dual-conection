@@ -22,10 +22,5 @@ public class ProductDimensionController {
         return productDimensionService.findAll();
     }
 
-    @GetMapping("/productDimensions/{codInka}")
-    public Mono<ProductDimension> findById(@PathVariable String codInka) {
-        System.out.println("id: "+codInka);
-        return productDimensionService.findById(codInka);
-    }
 
 }

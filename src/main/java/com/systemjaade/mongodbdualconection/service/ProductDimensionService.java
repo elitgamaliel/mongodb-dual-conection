@@ -18,8 +18,4 @@ public class ProductDimensionService {
         return productDimensionRepository.findAll();
     }
 
-    public Mono<ProductDimension> findById(String codInka) {
-        System.out.println("iddd: "+codInka);
-        return productDimensionRepository.findById(codInka);
-    }
 }
