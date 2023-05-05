@@ -1,12 +1,6 @@
 spring:
   data:
     mongodb:
-      patient:
-        database: patient
-        uri: mongodb://localhost:27017
-      doctor:
-        database: doctor
-        uri: mongodb://localhost:27017
       motorized-routing:
         database: motorized-routing
         uri: mongodb+srv://user-omni-dev:KJRUeHnz6glKQLrc@fp-dqu-digital-mongo.aohi9.mongodb.net/motorized-routing?authSource=admin&readPreference=secondaryPreferred&maxStalenessSeconds=120&retryWrites=true&w=majority

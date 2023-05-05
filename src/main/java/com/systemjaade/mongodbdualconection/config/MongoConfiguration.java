@@ -21,16 +21,6 @@ public class MongoConfiguration {
 
     @Primary
     @Bean
-    public MongoClient reactiveMongoClientDoctor() {
-        return MongoClients.create(createMongoClientSettings(customMongoProperties.getDoctor()));
-    }
-
-    @Bean
-    public MongoClient reactiveMongoClientPatient() {
-        return MongoClients.create(createMongoClientSettings(customMongoProperties.getPatient()));
-    }
-
-    @Bean
     public MongoClient reactiveMongoClientMotorizedRouting() {
         return MongoClients.create(createMongoClientSettings(customMongoProperties.getMotorizedRouting()));
     }
@@ -41,16 +31,6 @@ public class MongoConfiguration {
     }
 
     @Primary
-    @Bean("mongoTemplateDoctor")
-    public ReactiveMongoTemplate reactiveMongoTemplateDoctor() {
-        return new ReactiveMongoTemplate(reactiveMongoClientDoctor(), customMongoProperties.getDoctor().getDatabase());
-    }
-
-    @Bean("mongoTemplatePatient")
-    public ReactiveMongoTemplate reactiveMongoTemplatePatient() {
-        return new ReactiveMongoTemplate(reactiveMongoClientPatient(), customMongoProperties.getPatient().getDatabase());
-    }
-
     @Bean("mongoTemplateMotorizedRouting")
     public ReactiveMongoTemplate reactiveMongoTemplateMotorizedRouting(){
         return new ReactiveMongoTemplate(reactiveMongoClientMotorizedRouting(),customMongoProperties.getMotorizedRouting().getDatabase());

@@ -4,6 +4,7 @@ import com.systemjaade.mongodbdualconection.model.ProductDimension;
 import com.systemjaade.mongodbdualconection.repository.master.ProductDimensionRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class ProductDimensionService {
@@ -15,5 +16,10 @@ public class ProductDimensionService {
 
     public Flux<ProductDimension> findAll() {
         return productDimensionRepository.findAll();
+    }
+
+    public Mono<ProductDimension> findById(String codInka) {
+        System.out.println("iddd: "+codInka);
+        return productDimensionRepository.findById(codInka);
     }
 }

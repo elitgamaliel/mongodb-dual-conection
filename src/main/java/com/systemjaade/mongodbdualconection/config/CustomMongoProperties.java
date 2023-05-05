@@ -11,8 +11,6 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 @Setter
 public class CustomMongoProperties {
-    private MongoProperties patient;
-    private MongoProperties doctor;
     private MongoProperties motorizedRouting;
     private MongoProperties master;
 }
